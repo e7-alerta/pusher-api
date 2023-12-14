@@ -3,3 +3,5 @@ python-slugify
 uvicorn
 requests
 pydantic
+
+exponent_server_sdk
