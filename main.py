@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import FastAPI
 from managers import pusher
 
@@ -20,6 +22,7 @@ class PushForm(BaseModel):
     token: str
     title: str
     message: str
+    data: Optional[dict] = []
     pass
 
 
@@ -30,6 +33,7 @@ async def push(pushForm: PushForm):
         pushForm.token,
         pushForm.title,
         pushForm.message,
+        pushForm.data
     )
     return {"status": "done"}
 

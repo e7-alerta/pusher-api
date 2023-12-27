@@ -18,26 +18,26 @@ session.headers.update(
 )
 
 
-def send(token, title, message=None, extra=None):
+def send(to, title, message=None, data:dict=[]):
     try:
         response = PushClient(session=session).publish(
-            PushMessage(to=token,
+            PushMessage(to=to,
                         title=title,
                         body=message,
-                        data=extra))
+                        data=data))
     except PushServerError as exc:
         print("Push server error: ",
               {
-                  'token': token,
+                  'token': to,
                   'title': title,
                   'message': message,
-                  'extra': extra,
+                  'data': data,
                   'errors': exc.errors,
                   'response_data': exc.response_data,
               })
         raise
     except (ConnectionError, HTTPError) as exc:
         print("Connection error: ",
-              {'token': token, 'message': message, 'extra': extra}
+              {'token': to, 'message': message, 'data': data}
               )
     print("message sended", response.id)
