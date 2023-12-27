@@ -22,7 +22,7 @@ class PushForm(BaseModel):
     token: str
     title: str
     message: str
-    data: Optional[dict] = []
+    data: Optional[dict] = {}
     pass
 
 
