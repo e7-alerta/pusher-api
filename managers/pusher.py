@@ -18,7 +18,10 @@ session.headers.update(
 )
 
 
-def send(to, title, message=None, data:dict=[]):
+def send(to, title, message=None, data=None):
+
+    if data is None:
+        data = {}
     try:
         response = PushClient(session=session).publish(
             PushMessage(to=to,
